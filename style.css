@@ -1,0 +1,27 @@
+body{
+  background-color: ghostwhite;
+}.umpImg{
+  width: 100%;
+}.umpLink{
+  color: white;
+  position: absolute; 
+  left: 45%;
+  transform: translate(0%,-50%);
+  background-color: dimgray;
+  padding: 2px 10px;
+  border-radius: 3%;
+  text-decoration: none;
+}.bikeImg{
+  width: 100%;
+}.bikeLink{
+  position: absolute;
+  transform: translate(290%,-50%);
+  background-color: dimgray;
+  border-radius: 3%;
+  color: white;
+  text-decoration: none;
+  padding: 2px 10px;
+}.pistolaImg{
+  width: 100%;
+}
+  
