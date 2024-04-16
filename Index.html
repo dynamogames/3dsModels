@@ -3,10 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3dsModels</title>
+    <title>BLOCO DE NOTAS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f3f3f3; /* Cor de fundo padrão */
+            color: #333; /* Cor do texto padrão */
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff; /* Cor de fundo padrão para textarea */
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff; /* Cor de fundo padrão para div de saída */
+            color: #333; /* Cor do texto padrão para div de saída */
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff; /* Cor do texto padrão para botões */
+            background-color: #007bff; /* Cor de fundo padrão para botões */
+        }
+        button:hover {
+            background-color: #0056b3; /* Cor de fundo quando hover para botões */
+        }
+        .theme-light {
+            background-color: #f3f3f3; /* Cor de fundo para tema claro */
+            color: #333; /* Cor do texto para tema claro */
+        }
+        .theme-dark {
+            background-color: #333; /* Cor de fundo para tema escuro */
+            color: #f3f3f3; /* Cor do texto para tema escuro */
+        }
+    </style>
 </head>
-    <h1>3dsModels</h1>
-    <p>Baixar modelos 3d no formato obj</p>
-<body>
+<body class="theme-light">
+    <h1>BLOCO DE NOTAS</h1>
+    <textarea id="code" oninput="compileHTML()"></textarea>
+    <div class="output" id="output"></div>
+    <button onclick="saveHTML()">Salvar</button>
+    <button onclick="loadHTML()">Carregar</button>
+    <button onclick="toggleTheme()">Alterar Tema</button>
+    <button onclick="newProject()">Novo Projeto</button>
+    <script>
+        function compileHTML() {
+            var code = document.getElementById("code").value;
+            var output = document.getElementById("output");
+            output.innerHTML = code;
+        }
+        function saveHTML() {
+            var code = document.getElementById("code").value;
+            localStorage.setItem("savedHTML", code);
+            alert("Código HTML salvo com sucesso!");
+        }
+        function loadHTML() {
+            var savedHTML = localStorage.getItem("savedHTML");
+            if (savedHTML) {
+                document.getElementById("code").value = savedHTML;
+                compileHTML();
+            } else {
+                alert("Nenhum código HTML salvo encontrado.");
+            }
+        }
+        function toggleTheme() {
+            var body = document.body;
+            body.classList.toggle("theme-light");
+            body.classList.toggle("theme-dark");
+            var output = document.getElementById("output");
+            output.classList.toggle("theme-light");
+            output.classList.toggle("theme-dark");
+            var buttons = document.querySelectorAll("button.theme-light");
+            buttons.forEach(function(button) {
+                button.classList.toggle("theme-light");
+                button.classList.toggle("theme-dark");
+            });
+        }
+        function newProject() {
+            document.getElementById("code").value = ""; // Limpar o conteúdo do textarea
+            document.getElementById("output").innerHTML = ""; // Limpar o conteúdo do div de saída
+        }
+        window.onload = function() {
+            var savedHTML = localStorage.getItem("savedHTML");
+            if (savedHTML) {
+                document.getElementById("code").value = savedHTML;
+                compileHTML();
+            }
+        }
+    </script>
 </body>
 </html>
